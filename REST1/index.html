@@ -13,20 +13,17 @@
 
           $.post("/newTranslation/", data);
         });
-        $('[name="SearchWordSubmit"]').click(function () {
-          var data = {
-            finnishWord: $("#searchFinnishWord").val(),
-          };
 
+        $('[name="SearchWordSubmit"]').click(function () {
           var request = $.ajax({
-            url: "/dictionary",
+            url: "/dictionary/" + $("#finnishWord").val(),
             method: "GET",
-            data: data,
             dataType: "html",
           });
 
           request.done(function (msg) {
-            $("#result").val = msg.englishWord;
+            console.log(msg);
+            $("#result").text("Käännös englanniksi: " + msg);
           });
         });
       });
@@ -60,12 +57,13 @@
         <input name="AddWordSubmit" type="button" value="Tallenna" />
       </td>
     </form>
+    <p></p>
     <form id="form" name="form">
       <th>Hae käännös (fi => en)</th>
       <td>
         <input
-          name="searchFinnishWord"
-          id="searchFinnishWord"
+          name="finnishWord"
+          id="finnishWord"
           type="text"
           value=""
           maxlength="35"
@@ -75,7 +73,7 @@
       <td>
         <input name="SearchWordSubmit" type="button" value="Hae" />
       </td>
-      <p id="result">Tulos:</p>
+      <p id="result">Käännös englanniksi:</p>
     </form>
   </body>
 </html>
