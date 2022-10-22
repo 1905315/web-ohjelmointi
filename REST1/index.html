@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $('[name="AddWordSubmit"]').click(function () {
+          var data = {
+            finnishWord: $("#newFinnishWord").val(),
+            englishWord: $("#newEnglishWord").val(),
+          };
+
+          $.post("/newTranslation/", data);
+        });
+        $('[name="SearchWordSubmit"]').click(function () {
+          var data = {
+            finnishWord: $("#searchFinnishWord").val(),
+          };
+
+          var request = $.ajax({
+            url: "/dictionary",
+            method: "GET",
+            data: data,
+            dataType: "html",
+          });
+
+          request.done(function (msg) {
+            $("#result").val = msg.englishWord;
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <form id="NewTranslationForm" name="NewTranslationForm">
+      <th>Lisää sanapari (fi / en)</th>
+      <td>
+        <input
+          name="newFinnishWord"
+          id="newFinnishWord"
+          type="text"
+          value=""
+          maxlength="35"
+          size="35"
+        />
+      </td>
+      <td>
+        <input
+          name="newEnglishWord"
+          id="newEnglishWord"
+          type="text"
+          value=""
+          maxlength="35"
+          size="35"
+        />
+      </td>
+
+      <td>
+        <input name="AddWordSubmit" type="button" value="Tallenna" />
+      </td>
+    </form>
+    <form id="form" name="form">
+      <th>Hae käännös (fi => en)</th>
+      <td>
+        <input
+          name="searchFinnishWord"
+          id="searchFinnishWord"
+          type="text"
+          value=""
+          maxlength="35"
+          size="35"
+        />
+      </td>
+      <td>
+        <input name="SearchWordSubmit" type="button" value="Hae" />
+      </td>
+      <p id="result">Tulos:</p>
+    </form>
+  </body>
+</html>
