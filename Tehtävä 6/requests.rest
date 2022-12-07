@@ -8,7 +8,7 @@ GET http://localhost:3001/api/urheilijat/2
 
 // Poista urheilija ID:n perusteella
 ###
-DELETE http://localhost:3001/api/urheilijat/34
+DELETE http://localhost:3001/api/urheilijat/1
 
 // Lisää uusi urheilija
 ###
