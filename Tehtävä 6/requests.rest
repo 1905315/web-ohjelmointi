@@ -1,0 +1,43 @@
+// Hae kaikki urheilijat
+###
+GET http://localhost:3001/api/urheilijat
+
+// Hae urheilija ID:llä
+###
+GET http://localhost:3001/api/urheilijat/2
+
+// Poista urheilija ID:n perusteella
+###
+DELETE http://localhost:3001/api/urheilijat/34
+
+// Lisää uusi urheilija
+###
+POST http://localhost:3001/api/urheilijat
+content-type: application/json
+
+{
+   "etunimi": "Pekka",
+   "sukunimi": "Pekkanen",
+   "kutsumanimi": "Pekkas",
+   "syntymavuosi": 1950,
+   "paino": 80,
+   "kuva": "www.google.fi",
+   "laji": "Pyöräily",
+   "saavutukset": "MM-kultamitali"
+}
+
+// Päivitä urheilijan tietoja ID:n perusteella
+###
+POST http://localhost:3001/api/urheilijat/4
+content-type: application/json
+
+{
+   "etunimi": "Pekka",
+   "sukunimi": "Pekkanen",
+   "kutsumanimi": "Pätkä",
+   "syntymavuosi": 1950,
+   "paino": 99,
+   "kuva": "www.google.fi",
+   "laji": "Pyöräily",
+   "saavutukset": "MM-kultamitali, MM-hopeamitali"
+}
